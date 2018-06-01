@@ -43,7 +43,7 @@ public class MainPageVerification {
         mainPage.checkImagesAreDisplayed();
 
         //6 check text texts under images
-        //mainPage.checkTextUnderImages();
+        mainPage.checkTextUnderImages();
 
         //7 check main header test
         mainPage.checkMainHeaderText();
@@ -54,7 +54,7 @@ public class MainPageVerification {
         //9 check url
         mainPage.checkURL();
 
-        //10 check left section is displayed\
+        //10 check left section is displayed
         mainPage.checkLeftSectionIsDisplayed();
 
         //11 check footer is displayed

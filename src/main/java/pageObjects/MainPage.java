@@ -47,14 +47,14 @@ public class MainPage {
     @FindBy(xpath = "//div[@class = 'footer-content overflow']")
     private WebElement footer;
 
-    @FindBy(xpath = "//ul[@calss='uui-navigation nav navbar-nav m-l8']")
-    private List<WebElement> headerItemsText;
+    @FindBy(xpath = "//ul[@class = 'uui-navigation nav navbar-nav m-l8']/li")
+    private List<WebElement> headerItemTexts;
 
     @FindBy(xpath = "//div[@class = 'row clerafix benefits']//div[@class = 'benefit-icon']")
     private List<WebElement> images;
 
-    @FindBy(xpath = "//div[@class = 'row clerafix benefits']//span[@class = 'benefit-txt']")
-    private List<WebElement> textUnderImages;
+    @FindBy(css = ".benefit-txt")
+    private List<WebElement> textsUnderImages;
 
 
     //---------------------------------------------------------------------------------------------------------------------
@@ -77,17 +77,19 @@ public class MainPage {
     }
 
     public void checkHeaderItemsText() {
-        List<String> expectedHeaders = new LinkedList<String>();
-        expectedHeaders.add("HOME");
-        expectedHeaders.add("CONTACT FORM");
-        expectedHeaders.add("SERVICE");
-        expectedHeaders.add("METALS & COLORS");
+        List<String> actualHeaderItemTexts = new LinkedList<>();
 
-        for (WebElement actualHeader : headerItemsText) {
-            for (String expectedHeader : expectedHeaders) {
-                Assert.assertEquals(actualHeader.getText(), expectedHeader);
-            }
+        List<String> expectedHeaderItemsTexts = new LinkedList<String>();
+        expectedHeaderItemsTexts.add("HOME");
+        expectedHeaderItemsTexts.add("CONTACT FORM");
+        expectedHeaderItemsTexts.add("SERVICE");
+        expectedHeaderItemsTexts.add("METALS & COLORS");
+
+        for (WebElement headerItemText : headerItemTexts) {
+            actualHeaderItemTexts.add(headerItemText.getText());
         }
+
+        Assert.assertTrue(actualHeaderItemTexts.equals(expectedHeaderItemsTexts));
     }
 
     public void checkImagesAreDisplayed() {
@@ -98,6 +100,8 @@ public class MainPage {
     }
 
     public void checkTextUnderImages() {
+        List<String> actualTexts = new LinkedList<>();
+
         List<String> expectedTexts = new LinkedList<String>();
         expectedTexts.add("To include good practices\n" +
                 "and ideas from successful\n" +
@@ -110,12 +114,12 @@ public class MainPage {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        for (WebElement actualText : textUnderImages) {
-            for (String expectedText : expectedTexts) {
-                Assert.assertEquals(actualText.getText(), expectedText);
-
-            }
+        // get text from each element
+        for (WebElement textUnderImage : textsUnderImages) {
+           actualTexts.add(textUnderImage.getText());
         }
+
+        Assert.assertTrue(actualTexts.equals(expectedTexts));
     }
 
     public void checkMainHeaderText() {

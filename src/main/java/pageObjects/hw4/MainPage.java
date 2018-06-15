@@ -1,18 +1,21 @@
 package pageObjects.hw4;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static enums.ServiceList.*;
+
 
 
 public class MainPage {
@@ -33,10 +36,10 @@ public class MainPage {
     private SelenideElement userNameLabel;
 
     @FindBy(css = ".benefit-icon")
-    private List<SelenideElement> images;
+    private ElementsCollection images;
 
     @FindBy(css = ".benefit-txt")
-    private List<SelenideElement> textsUnderImages;
+    private ElementsCollection textsUnderImages;
 
     @FindBy(css = "h3[name='main-title']")
     private SelenideElement mainText;
@@ -48,11 +51,10 @@ public class MainPage {
     private SelenideElement service;
 
     @FindBy(css = "ul[class='dropdown-menu'] > li > a")
-    private List<SelenideElement> serviceDropdown;
+    private ElementsCollection serviceDropdown;
 
-    @FindBy(xpath = "//ul[@class='sub']/li/a/p/span")
-    private List<SelenideElement> serviceLeftPanel;
-
+    @FindBy(xpath = "//ul[@class='sub']//span")
+    private ElementsCollection serviceLeftPanel;
 
 
     public void openMainPage() {
@@ -75,6 +77,7 @@ public class MainPage {
     }
 
     public void checkPictures() {
+        images.shouldHaveSize(4);
         for (SelenideElement image : images) {
             image.shouldBe(Condition.visible);
         }
@@ -117,7 +120,7 @@ public class MainPage {
 
     public void checkServiceDropdown() {
         List<String> actualServiceElements = new LinkedList<>();
-        for(SelenideElement element : serviceDropdown) {
+        for (SelenideElement element : serviceDropdown) {
             actualServiceElements.add(element.getText());
         }
         checkServiceElements(actualServiceElements);
@@ -125,7 +128,7 @@ public class MainPage {
 
     public void checkServiceLeftPanel() {
         List<String> actualServiceElements = new LinkedList<>();
-        for(SelenideElement element : serviceLeftPanel) {
+        for (SelenideElement element : serviceLeftPanel) {
             actualServiceElements.add(element.getAttribute("innerHTML").toUpperCase().trim());
         }
         checkServiceElements(actualServiceElements);
@@ -144,5 +147,20 @@ public class MainPage {
         expectedServiceElements.add("PERFORMANCE");
 
         Assert.assertEquals(actualServiceElements, expectedServiceElements);
+    }
+
+    public Object selectOptionFromServiceDropdown(String option) {
+        openServiceDropdown();
+        $(By.linkText(option)).click();
+        Object page = null;
+
+        if (option.equals(DIFFERENT_ELEMENTS.option)) {
+            page = page(DifferentElementsPage.class);
+        }
+
+        if (option.equals(DATES.option))  {
+            page = page(DatesPage.class);
+        }
+        return page;
     }
 }

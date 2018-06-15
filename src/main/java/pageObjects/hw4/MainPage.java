@@ -5,8 +5,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ServiceList.*;
-
+import static org.testng.Assert.assertEquals;
 
 
 public class MainPage {
@@ -62,7 +60,7 @@ public class MainPage {
     }
 
     public void checkBrowserTitle(String title) {
-        Assert.assertEquals(getWebDriver().getTitle(), title);
+        assertEquals(getWebDriver().getTitle(), title);
     }
 
     public void login(String login, String password) {
@@ -84,8 +82,6 @@ public class MainPage {
     }
 
     public void checkTextUnderImages() {
-        List<String> actualTexts = new LinkedList<>();
-
         List<String> expectedTexts = new LinkedList<String>();
         expectedTexts.add("To include good practices\n" +
                 "and ideas from successful\n" +
@@ -98,12 +94,10 @@ public class MainPage {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        // get text from each element
-        for (SelenideElement textUnderImage : textsUnderImages) {
-            actualTexts.add(textUnderImage.getText());
-
+        for (int i = 0; i < textsUnderImages.size(); i++) {
+            assertEquals(textsUnderImages.get(i).getText(),
+                    expectedTexts.get(i));
         }
-        Assert.assertTrue(actualTexts.equals(expectedTexts));
     }
 
     public void checkMainHeaderTexts() {
@@ -146,7 +140,12 @@ public class MainPage {
         expectedServiceElements.add("DIFFERENT ELEMENTS");
         expectedServiceElements.add("PERFORMANCE");
 
-        Assert.assertEquals(actualServiceElements, expectedServiceElements);
+        assertEquals(actualServiceElements, expectedServiceElements);
+
+        for (int i = 0; i < actualServiceElements.size(); i++) {
+            assertEquals(actualServiceElements.get(i),
+                    expectedServiceElements.get(i));
+        }
     }
 
     public Object selectOptionFromServiceDropdown(String option) {

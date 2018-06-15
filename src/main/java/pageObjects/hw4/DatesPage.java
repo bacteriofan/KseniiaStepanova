@@ -2,10 +2,10 @@ package pageObjects.hw4;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import java.util.Formatter;
 import java.util.List;
 import static com.codeborne.selenide.Selenide.actions;
+import static org.testng.Assert.*;
 
 
 public class DatesPage extends MainPage {
@@ -27,8 +27,8 @@ public class DatesPage extends MainPage {
                 .perform();
         actions().dragAndDropBy(sliderTracks.get(1), (int) (-((100 - to) * step + step)), 0).build().perform();
 
-        Assert.assertEquals(Integer.parseInt(sliderTracks.get(0).getText()), from);
-        Assert.assertEquals(Integer.parseInt(sliderTracks.get(1).getText()), to);
+        assertEquals(Integer.parseInt(sliderTracks.get(0).getText()), from);
+        assertEquals(Integer.parseInt(sliderTracks.get(1).getText()), to);
 
     }
 
@@ -38,13 +38,13 @@ public class DatesPage extends MainPage {
         f.format("Range 2(To):" + "%s" + " link clicked", toValue);
         String expectedTo = f.toString();
 
-        Assert.assertEquals(actualTextTo, expectedTo);
+        assertEquals(actualTextTo, expectedTo);
 
         Formatter f2 = new Formatter();
         String actualTextFrom = logRow.get(1).getText().substring(9, logRow.get(1).getText().length());
         f2.format("Range 2(From):" + "%s" + " link clicked", fromValue);
         String expectedFrom = f2.toString();
 
-        Assert.assertEquals(actualTextFrom, expectedFrom);
+        assertEquals(actualTextFrom, expectedFrom);
     }
 }

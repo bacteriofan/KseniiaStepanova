@@ -92,7 +92,6 @@ public class DifferentElementsPage extends MainPage{
         Assert.assertEquals(actualText, expectedText);
     }
 
-
     public void checkLog(String changedValue) {
         String actualText = logRow.getText().substring(9, logRow.getText().length());
         String expectedText = "";

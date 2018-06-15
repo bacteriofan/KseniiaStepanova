@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TextVerification {
+public class TextVerificationWithDataProvider {
 
     @DataProvider(name = "TextLocators", parallel = true)
     public static Object[][] text() {

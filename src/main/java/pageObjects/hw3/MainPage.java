@@ -8,11 +8,10 @@ import org.testng.Assert;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.testng.Assert.*;
+
 
 public class MainPage {
-
-    public WebDriver driver;
-
 
     @FindBy(xpath = "//li[@class = 'dropdown uui-profile-menu']")
     private WebElement loginButton;
@@ -61,11 +60,10 @@ public class MainPage {
 
     public void open(WebDriver driver) {
         driver.navigate().to("https://epam.github.io/JDI/index.html");
-        Assert.assertEquals(driver.getTitle(), "Home Page");
     }
 
     public void checkMainPageTitle(WebDriver driver) {
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        assertEquals(driver.getTitle(), "Home Page");
     }
 
     public void login(String login, String password, String name) {
@@ -73,35 +71,28 @@ public class MainPage {
         usernameField.sendKeys(login);
         passwordField.sendKeys(password);
         submitCredentials.click();
-        Assert.assertEquals(userNameLabel.getText(), name);
+        assertEquals(userNameLabel.getText(), name);
     }
 
     public void checkHeaderItemsText() {
-        List<String> actualHeaderItemTexts = new LinkedList<>();
-
         List<String> expectedHeaderItemsTexts = new LinkedList<String>();
         expectedHeaderItemsTexts.add("HOME");
         expectedHeaderItemsTexts.add("CONTACT FORM");
         expectedHeaderItemsTexts.add("SERVICE");
         expectedHeaderItemsTexts.add("METALS & COLORS");
 
-        for (WebElement headerItemText : headerItemTexts) {
-            actualHeaderItemTexts.add(headerItemText.getText());
+        for (int i = 0; i < headerItemTexts.size(); i++) {
+            assertEquals(headerItemTexts.get(i).getText(),
+                    expectedHeaderItemsTexts.get(i));
         }
-
-        Assert.assertTrue(actualHeaderItemTexts.equals(expectedHeaderItemsTexts));
     }
 
     public void checkImagesAreDisplayed() {
-        Assert.assertEquals(images.size(), 4);
-        for (WebElement image : images) {
-            Assert.assertTrue(image.isDisplayed());
-        }
-    }
+        assertEquals(images.size(), 4);
+        images.forEach(image -> assertTrue(image.isDisplayed()));
+   }
 
     public void checkTextUnderImages() {
-        List<String> actualTexts = new LinkedList<>();
-
         List<String> expectedTexts = new LinkedList<String>();
         expectedTexts.add("To include good practices\n" +
                 "and ideas from successful\n" +
@@ -114,37 +105,34 @@ public class MainPage {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        // get text from each element
-        for (WebElement textUnderImage : textsUnderImages) {
-           actualTexts.add(textUnderImage.getText());
+        for (int i = 0; i < textsUnderImages.size(); i++) {
+            assertEquals(textsUnderImages.get(i).getText(),
+                    expectedTexts.get(i));
         }
-
-        Assert.assertTrue(actualTexts.equals(expectedTexts));
     }
 
     public void checkMainHeaderText() {
-        Assert.assertEquals(mainHeader.getText(), "EPAM FRAMEWORK WISHES…");
-        Assert.assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
+        assertEquals(mainHeader.getText(), "EPAM FRAMEWORK WISHES…");
+        assertEquals(mainText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, " +
                 "SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, " +
                 "QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE " +
                 "IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
     }
 
     public void checkSubHeader() {
-        Assert.assertEquals(subHeader.getText(), "JDI GITHUB");
+        assertEquals(subHeader.getText(), "JDI GITHUB");
     }
 
     public void checkURL() {
-        Assert.assertEquals(url.getAttribute("href"), "https://github.com/epam/JDI");
+        assertEquals(url.getAttribute("href"), "https://github.com/epam/JDI");
     }
 
     public void checkLeftSectionIsDisplayed() {
-        Assert.assertTrue(leftSection.isDisplayed());
+        assertTrue(leftSection.isDisplayed());
     }
 
     public void checkFooterIsDisplayed() {
-        Assert.assertTrue(footer.isDisplayed());
+        assertTrue(footer.isDisplayed());
     }
-
 }
 

@@ -3,9 +3,9 @@ package pageObjects.hw4;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import java.util.Formatter;
 import static com.codeborne.selenide.Condition.text;
+import static org.testng.Assert.*;
 
 public class DifferentElementsPage extends MainPage{
 
@@ -41,33 +41,29 @@ public class DifferentElementsPage extends MainPage{
 
     public void checkCheckboxes() {
         checkboxes.shouldHaveSize(4);
-        for (SelenideElement checkbox : checkboxes) {
-            checkbox.exists();
-        }
+        checkboxes.forEach(checkbox -> assertTrue(checkbox.exists()));
     }
 
     public void checkRadiobuttons() {
         radiobuttons.shouldHaveSize(4);
-        for (SelenideElement radiobutton : radiobuttons) {
-            radiobutton.exists();
-        }
+        radiobuttons.forEach(radiobutton -> assertTrue(radiobutton.exists()));
     }
 
     public void checkDropdown() {
-        Assert.assertTrue(dropdown.isDisplayed());
+        assertTrue(dropdown.isDisplayed());
     }
 
     public void checkButtons() {
-        Assert.assertTrue(defaultButton.isDisplayed());
-        Assert.assertTrue(button.isDisplayed());
+        assertTrue(defaultButton.isDisplayed());
+        assertTrue(button.isDisplayed());
     }
 
     public void checkRightSection() {
-        Assert.assertTrue(rightSection.isDisplayed());
+        assertTrue(rightSection.isDisplayed());
     }
 
     public void checkLeftSection() {
-        Assert.assertTrue(leftSection.isDisplayed());
+        assertTrue(leftSection.isDisplayed());
     }
 
     public void selectCheckbox(String checkbox) {
@@ -82,14 +78,13 @@ public class DifferentElementsPage extends MainPage{
         colorsDropdown.selectOptionContainingText(color);
     }
 
-
     public void checkLog(String checkboxName, String status) {
         String actualText = logRow.getText().substring(9, logRow.getText().length());
         Formatter f = new Formatter();
         f.format("%s" + ": condition changed to " + "%s", checkboxName, status);
         String expectedText = f.toString();
 
-        Assert.assertEquals(actualText, expectedText);
+        assertEquals(actualText, expectedText);
     }
 
     public void checkLog(String changedValue) {
@@ -104,6 +99,6 @@ public class DifferentElementsPage extends MainPage{
            f.format("Colors: value changed to " + "%s", changedValue);
            expectedText = f.toString();
        }
-        Assert.assertEquals(actualText, expectedText);
+        assertEquals(actualText, expectedText);
     }
 }

@@ -76,9 +76,7 @@ public class MainPage {
 
     public void checkPictures() {
         images.shouldHaveSize(4);
-        for (SelenideElement image : images) {
-            image.shouldBe(Condition.visible);
-        }
+        images.forEach(image -> image.shouldBe(Condition.visible));
     }
 
     public void checkTextUnderImages() {
@@ -114,17 +112,15 @@ public class MainPage {
 
     public void checkServiceDropdown() {
         List<String> actualServiceElements = new LinkedList<>();
-        for (SelenideElement element : serviceDropdown) {
-            actualServiceElements.add(element.getText());
-        }
+        serviceDropdown.forEach(option -> actualServiceElements.add(option.getText()));
+
         checkServiceElements(actualServiceElements);
     }
 
     public void checkServiceLeftPanel() {
         List<String> actualServiceElements = new LinkedList<>();
-        for (SelenideElement element : serviceLeftPanel) {
-            actualServiceElements.add(element.getAttribute("innerHTML").toUpperCase().trim());
-        }
+        serviceLeftPanel.forEach(option -> actualServiceElements.add(option.getAttribute("innerHTML").toUpperCase().trim()));
+
         checkServiceElements(actualServiceElements);
     }
 
@@ -139,8 +135,6 @@ public class MainPage {
         expectedServiceElements.add("TABLE WITH PAGES");
         expectedServiceElements.add("DIFFERENT ELEMENTS");
         expectedServiceElements.add("PERFORMANCE");
-
-        assertEquals(actualServiceElements, expectedServiceElements);
 
         for (int i = 0; i < actualServiceElements.size(); i++) {
             assertEquals(actualServiceElements.get(i),

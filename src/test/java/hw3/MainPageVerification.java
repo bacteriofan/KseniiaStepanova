@@ -11,8 +11,8 @@ import pageObjects.hw3.MainPage;
 
 public class MainPageVerification {
 
-    public static MainPage mainPage = new MainPage();
-    WebDriver driver = new ChromeDriver();
+    private MainPage mainPage;
+    private WebDriver driver = new ChromeDriver();
 
     @BeforeMethod
     public void beforeMethod() {

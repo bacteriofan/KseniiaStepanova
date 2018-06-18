@@ -1,9 +1,13 @@
 package hw4;
 import base.TestBase;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.hw4.DifferentElementsPage;
 import pageObjects.hw4.MainPage;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
 
 import static enums.Checkbox.WATER;
 import static enums.Checkbox.WIND;
@@ -13,8 +17,9 @@ import static enums.Users.PITER_CHAILOVSKII;
 import static com.codeborne.selenide.Selenide.*;
 import static enums.ServiceList.*;
 
-
-
+@Listeners(AllureAttachmentListener.class)
+@Features("Selenide tests")
+@Stories("Different Elements Verification")
 public class DifferentElementsPageVerification extends TestBase {
 
     private MainPage mainPage;

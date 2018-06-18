@@ -1,16 +1,22 @@
 package hw4;
 
 import base.TestBase;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.hw4.DatesPage;
 import pageObjects.hw4.MainPage;
+import ru.yandex.qatools.allure.annotations.Features;
+import ru.yandex.qatools.allure.annotations.Stories;
+import listeners.AllureAttachmentListener;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.ServiceList.*;
 import static enums.Users.PITER_CHAILOVSKII;
 
+@Listeners(AllureAttachmentListener.class)
+@Features("Selenide tests")
+@Stories("Dates Page Verification")
 public class DatesPageVerification extends TestBase {
 
     private MainPage mainPage;

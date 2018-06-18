@@ -2,6 +2,7 @@ package pageObjects.hw4;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 import java.util.Formatter;
 import java.util.List;
 import static com.codeborne.selenide.Selenide.actions;
@@ -16,6 +17,7 @@ public class DatesPage extends MainPage {
     @FindBy(css = ".panel-body-list>li")
     private List<SelenideElement> logRow;
 
+    @Step
     public void setSliderRange(int from, int to) {
         actions().dragAndDropBy(sliderTracks.get(0), -2000, 0).build().perform();
         actions().dragAndDropBy(sliderTracks.get(1), 2000, 0).build().perform();
@@ -32,6 +34,8 @@ public class DatesPage extends MainPage {
 
     }
 
+
+    @Step
     public void checkLog(int fromValue, int toValue) {
         String fromValueString = String.valueOf(fromValue);
         String toValueString = String.valueOf(toValue);

@@ -3,6 +3,8 @@ package pageObjects.hw4;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
+
 import java.util.Formatter;
 import static com.codeborne.selenide.Condition.text;
 import static org.testng.Assert.*;
@@ -38,46 +40,55 @@ public class DifferentElementsPage extends MainPage{
     private SelenideElement colorsDropdown;
 
 
-
+    @Step
     public void checkCheckboxes() {
         checkboxes.shouldHaveSize(4);
         checkboxes.forEach(checkbox -> assertTrue(checkbox.exists()));
     }
 
+    @Step
     public void checkRadiobuttons() {
         radiobuttons.shouldHaveSize(4);
         radiobuttons.forEach(radiobutton -> assertTrue(radiobutton.exists()));
     }
 
+    @Step
     public void checkDropdown() {
         assertTrue(dropdown.isDisplayed());
     }
 
+    @Step
     public void checkButtons() {
         assertTrue(defaultButton.isDisplayed());
         assertTrue(button.isDisplayed());
     }
 
+    @Step
     public void checkRightSection() {
         assertTrue(rightSection.isDisplayed());
     }
 
+    @Step
     public void checkLeftSection() {
         assertTrue(leftSection.isDisplayed());
     }
 
+    @Step
     public void clickCheckbox(String checkbox) {
         checkboxes.findBy(text(checkbox)).click();
     }
 
+    @Step
     public void selectRadiobutton(String radiobutton) {
         radiobuttons.findBy(text(radiobutton)).click();
     }
 
+    @Step
     public void selectColorFromDropdown (String color) {
         colorsDropdown.selectOptionContainingText(color);
     }
 
+    @Step
     public void checkLog(String checkboxName, boolean status) {
         String statusString = String.valueOf(status);
 
@@ -89,6 +100,7 @@ public class DifferentElementsPage extends MainPage{
         assertEquals(actualText, expectedText);
     }
 
+    @Step
     public void checkLog(String changedValue) {
         String actualText = logRow.getText().substring(9, logRow.getText().length());
         String expectedText = "";

@@ -66,7 +66,7 @@ public class DifferentElementsPage extends MainPage{
         assertTrue(leftSection.isDisplayed());
     }
 
-    public void selectCheckbox(String checkbox) {
+    public void clickCheckbox(String checkbox) {
         checkboxes.findBy(text(checkbox)).click();
     }
 
@@ -78,10 +78,12 @@ public class DifferentElementsPage extends MainPage{
         colorsDropdown.selectOptionContainingText(color);
     }
 
-    public void checkLog(String checkboxName, String status) {
+    public void checkLog(String checkboxName, boolean status) {
+        String statusString = String.valueOf(status);
+
         String actualText = logRow.getText().substring(9, logRow.getText().length());
         Formatter f = new Formatter();
-        f.format("%s" + ": condition changed to " + "%s", checkboxName, status);
+        f.format("%s" + ": condition changed to " + "%s", checkboxName, statusString);
         String expectedText = f.toString();
 
         assertEquals(actualText, expectedText);

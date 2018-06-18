@@ -44,24 +44,24 @@ public class DatesPageVerification extends TestBase {
         datesPage.setSliderRange(0, 100);
 
         //7 check log rows
-        datesPage.checkLog("0", "100");
+        datesPage.checkLog(0, 100);
 
         //8 set range from = 0, to = 0
         datesPage.setSliderRange(0, 0);
 
         //9 check log rows
-        datesPage.checkLog("0", "0");
+        datesPage.checkLog(0, 0);
 
         //10 set range from = 100, to = 100
         datesPage.setSliderRange(100, 100);
 
         //11 check log rows
-        datesPage.checkLog("100", "100");
+        datesPage.checkLog(100, 100);
 
         //12 set range from = 30, to = 70
         datesPage.setSliderRange(30, 70);
 
         //13 check log rows
-        datesPage.checkLog("30", "70");
+        datesPage.checkLog(30, 70);
     }
 }

@@ -69,10 +69,10 @@ public class DifferentElementsPageVerification extends TestBase {
         differentElementsPage.checkLeftSection();
 
         //12 select checkboxes and check log
-        differentElementsPage.selectCheckbox(WATER.checkbox);
-        differentElementsPage.checkLog(WATER.checkbox, "true");
-        differentElementsPage.selectCheckbox(WIND.checkbox);
-        differentElementsPage.checkLog(WIND.checkbox, "true");
+        differentElementsPage.clickCheckbox(WATER.checkbox);
+        differentElementsPage.checkLog(WATER.checkbox, true);
+        differentElementsPage.clickCheckbox(WIND.checkbox);
+        differentElementsPage.checkLog(WIND.checkbox, true);
         
         //13
         differentElementsPage.selectRadiobutton(SELEN.radiobutton);
@@ -83,9 +83,9 @@ public class DifferentElementsPageVerification extends TestBase {
         differentElementsPage.checkLog(YELLOW.row);
 
         //15 uncheck checkboxes
-        differentElementsPage.selectCheckbox(WATER.checkbox);
-        differentElementsPage.checkLog(WATER.checkbox, "false");
-        differentElementsPage.selectCheckbox(WIND.checkbox);
-        differentElementsPage.checkLog(WIND.checkbox, "false");
+        differentElementsPage.clickCheckbox(WATER.checkbox);
+        differentElementsPage.checkLog(WATER.checkbox, false);
+        differentElementsPage.clickCheckbox(WIND.checkbox);
+        differentElementsPage.checkLog(WIND.checkbox, false);
     }
 }

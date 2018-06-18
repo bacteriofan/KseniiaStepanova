@@ -32,17 +32,20 @@ public class DatesPage extends MainPage {
 
     }
 
-    public void checkLog(String fromValue, String toValue) {
+    public void checkLog(int fromValue, int toValue) {
+        String fromValueString = String.valueOf(fromValue);
+        String toValueString = String.valueOf(toValue);
+
         String actualTextTo = logRow.get(0).getText().substring(9, logRow.get(0).getText().length());
         Formatter f = new Formatter();
-        f.format("Range 2(To):" + "%s" + " link clicked", toValue);
+        f.format("Range 2(To):" + "%s" + " link clicked", toValueString);
         String expectedTo = f.toString();
 
         assertEquals(actualTextTo, expectedTo);
 
         Formatter f2 = new Formatter();
         String actualTextFrom = logRow.get(1).getText().substring(9, logRow.get(1).getText().length());
-        f2.format("Range 2(From):" + "%s" + " link clicked", fromValue);
+        f2.format("Range 2(From):" + "%s" + " link clicked", fromValueString);
         String expectedFrom = f2.toString();
 
         assertEquals(actualTextFrom, expectedFrom);

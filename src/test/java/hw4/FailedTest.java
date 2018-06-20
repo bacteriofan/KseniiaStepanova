@@ -38,7 +38,7 @@ public class FailedTest extends TestBase {
         mainPage.checkBrowserTitle("Home Page");
 
         //3 login
-        mainPage.login(KSENIIA_STEPANOVA.login, KSENIIA_STEPANOVA.password);
+        mainPage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
 
         //4 check User Name
         mainPage.checkUserName(PITER_CHAILOVSKII.name);
@@ -56,7 +56,7 @@ public class FailedTest extends TestBase {
         datesPage.setSliderRange(0, 0);
 
         //9 check log rows
-        datesPage.checkLog(0, 0);
+        datesPage.checkLog(0, 35);
 
         //10 set range from = 100, to = 100
         datesPage.setSliderRange(100, 100);

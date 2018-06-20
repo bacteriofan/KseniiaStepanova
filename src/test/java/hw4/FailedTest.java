@@ -6,13 +6,18 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.hw4.DatesPage;
+import pageObjects.hw4.DifferentElementsPage;
 import pageObjects.hw4.MainPage;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Stories;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.Checkbox.WATER;
+import static enums.Checkbox.WIND;
+import static enums.DropdownList.YELLOW;
+import static enums.Radiobutton.SELEN;
 import static enums.ServiceList.DATES;
-import static enums.Users.KSENIIA_STEPANOVA;
+import static enums.ServiceList.DIFFERENT_ELEMENTS;
 import static enums.Users.PITER_CHAILOVSKII;
 
 @Listeners(AllureAttachmentListener.class)
@@ -20,13 +25,13 @@ import static enums.Users.PITER_CHAILOVSKII;
 @Stories("Failed test")
 public class FailedTest extends TestBase {
     private MainPage mainPage;
-    private DatesPage datesPage;
+    private DifferentElementsPage differentElementsPage;
 
 
     @BeforeClass
     public void beforeClass() {
         mainPage = page(MainPage.class);
-        datesPage = page(DatesPage.class);
+        differentElementsPage = page(DifferentElementsPage.class);
     }
 
     @Test
@@ -43,32 +48,52 @@ public class FailedTest extends TestBase {
         //4 check User Name
         mainPage.checkUserName(PITER_CHAILOVSKII.name);
 
-        //5 open Different Elements page
-        mainPage.selectOptionFromServiceDropdown(DATES.option);
+        //5 check page elements
+        mainPage.checkPictures();
+        mainPage.checkTextUnderImages();
+        mainPage.checkMainHeaderTexts();
 
-        //6 set range from = 0, to = 100
-        datesPage.setSliderRange(0, 100);
+        //6 check Service dropdown elements
+        mainPage.openServiceDropdown();
+        mainPage.checkServiceDropdown();
 
-        //7 check log rows
-        datesPage.checkLog(0, 100);
+        //7 check Service elements on left panel
+        mainPage.checkServiceLeftPanel();
 
-        //8 set range from = 0, to = 0
-        datesPage.setSliderRange(0, 0);
+        //8 open Different Elements page
+        mainPage.selectOptionFromServiceDropdown(DIFFERENT_ELEMENTS.option);
 
-        //9 check log rows
-        datesPage.checkLog(0, 35);
+        //9 check interface on Different elements page are displayed
+        differentElementsPage.checkCheckboxes();
+        differentElementsPage.checkRadiobuttons();
+        differentElementsPage.checkDropdown();
+        differentElementsPage.checkButtons();
 
-        //10 set range from = 100, to = 100
-        datesPage.setSliderRange(100, 100);
+        //10 check right section is displayed
+        differentElementsPage.checkRightSection();
 
-        //11 check log rows
-        datesPage.checkLog(100, 100);
+        //11 check left section is displayed
+        differentElementsPage.checkLeftSection();
 
-        //12 set range from = 30, to = 70
-        datesPage.setSliderRange(30, 70);
+        //12 select checkboxes and check log
+        differentElementsPage.clickCheckbox(WATER.checkbox);
+        differentElementsPage.checkLog(WATER.checkbox, true);
+        differentElementsPage.clickCheckbox(WIND.checkbox);
+        differentElementsPage.checkLog(WIND.checkbox, true);
 
-        //13 check log rows
-        datesPage.checkLog(30, 70);
+        //13
+        differentElementsPage.selectRadiobutton(SELEN.radiobutton);
+        differentElementsPage.checkLog(SELEN.radiobutton);
+
+        //14 select color from dropdown
+        differentElementsPage.selectColorFromDropdown(YELLOW.row);
+        differentElementsPage.checkLog(YELLOW.row);
+
+        //15 uncheck checkboxes
+        differentElementsPage.clickCheckbox(WATER.checkbox);
+        differentElementsPage.checkLog(WATER.checkbox, true);
+        differentElementsPage.clickCheckbox(WIND.checkbox);
+        differentElementsPage.checkLog(WIND.checkbox, false);
     }
 
 }

@@ -4,6 +4,7 @@
         <classes>
             <class name="hw4.DatesPageVerification" />
             <class name="hw4.DifferentElementsPageVerification"/>
+            <class name="hw4.FailedTest"/>
         </classes>
     </test>
 </suite>

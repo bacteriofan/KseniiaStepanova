@@ -8,7 +8,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
-import pageObjects.hw4.DatesPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.Formatter;
@@ -18,17 +17,13 @@ import java.util.List;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.ServiceList.DATES;
-import static enums.ServiceList.DIFFERENT_ELEMENTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
 public class MainPage {
 
-    public MainPage() {
-        page(this);
-    }
+    public MainPage() { page(this); }
 
     @FindBy(css = ".profile-photo")
     private SelenideElement loginButton;
@@ -65,7 +60,6 @@ public class MainPage {
 
     @FindBy(xpath = "//ul[@class='sub']//span")
     private ElementsCollection serviceLeftPanel;
-
 
     @FindBy(css = ".label-checkbox")
     private ElementsCollection checkboxes;

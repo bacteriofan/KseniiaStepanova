@@ -1,6 +1,7 @@
+@Regression
 Feature: Different Elements Page Verification
 
-  Scenario: Single scenario
+  Scenario: Single scenarioh
     Given I am on Main Page
     When I login as user epam with password 1234
     Then User name is PITER CHAILOVSKII
@@ -28,6 +29,3 @@ Feature: Different Elements Page Verification
     Then I check log: Water checkbox is false
     When I click Wind checkbox
     Then I check log: Wind checkbox is false
-
-
-

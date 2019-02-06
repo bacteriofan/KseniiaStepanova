@@ -105,5 +105,7 @@ public class MainPageVerification {
         //14 close browser
         driver.close();
 
+        //master
+
     }
 }
